@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Список всех дел {% endblock %}
+
+{% block content %}
+
+	{% if exercises_list %}
+
+
+		{% for a in exercises_list %}
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="card">
+						<div class="card-header">{{ a.status }}</div>
+						<div class="card-body">
+						<h5 class="card-title">{{ a.exercise_text }}</h5>
+                        <a href="{% url 'to_do_list:detail' a.id %}" class="btn btn-primary"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>  
+		{% endfor %}
+
+	{% else %}
+		Список дел пуст
+	{% endif %}
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Exercise, Profile
+from .models import Task
 
 
-admin.site.register(Exercise)
+admin.site.register(Task)
 

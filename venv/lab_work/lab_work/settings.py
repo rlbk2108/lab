@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
-    'ToDoList',
+    'ToDoList.apps.TodolistConfig',
 ]
 
 MIDDLEWARE = [
