@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{exercise.exercise_text}}{% endblock %}
+
+{% block content %}
+
+<h2>{{exercise.exercise_text}}</h2>
+
+<p>{{exercise.status}}</p>
+
+<em>{{exercise.date_added}}</em>
+
+
+<hr>
+
+
+<hr>
+
+{% endblock %}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # My apps
     'ToDoList.apps.TodolistConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

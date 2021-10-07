@@ -19,3 +19,6 @@ class Task(models.Model):
     class Meta:
         verbose_name = 'дело'
         verbose_name_plural = 'дела'
+
+class TaskComment(models.Model):
+    exercise = models.ForeignKey(Task, on_delete = models.CASCADE)
