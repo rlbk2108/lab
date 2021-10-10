@@ -2,7 +2,8 @@ from django.http import Http404, HttpResponseRedirect
 from .models import Task
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactForm
-from django.views.generic import ListView, DetailView
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 
 def index(request):
@@ -38,7 +39,7 @@ def create(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('list.html')
+            return redirect('todolist/')
     form = ContactForm()
 
     return render(request,'to_do_list/task_create.html', {'form' : form })
@@ -48,14 +49,17 @@ def delete(request, pk, template_name='to_do_list/task_delete.html'):
     contact = get_object_or_404(Task, pk=pk)
     if request.method=='POST':
         contact.delete()
-        return redirect('list.html')
+        return redirect('todolist/')
     return render(request, template_name, {'object' : contact})
 
 
-def edit(request, pk, template_name='to_do_list/task_edit.html'):
-    exercise = get_object_or_404(Task, pk=pk)
-    form = ContactForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('list.html')
+def edit(request, pk, template_name = 'to_do_list/task_edit.html'):
+    contact = get_object_or_404(Task, pk=pk)
+    if request.method=='POST':
+        form = ContactForm(request.POST, instance=contact)
+        if form.is_valid():
+            contact.save()
+            return redirect('todolist/')
+    else:
+        form = ContactForm(instance=contact)
     return render(request, template_name, {'form' : form})

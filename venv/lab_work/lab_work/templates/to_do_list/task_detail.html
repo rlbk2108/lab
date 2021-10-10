@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}{{exercise.exercise_text}}{% endblock %}
+{% block title %} Подробнее {% endblock %}
 
 {% block content %}
 
-<h2>{{exercise.exercise_text}}</h2>
 
-<p>{{exercise.status}}</p>
 
-<em>{{exercise.date_added}}</em>
+{% if exercise %}
+
+<div class="post">
+
+    <h2>{{exercise.exercise_text}}</h2>
+
+    <p>{{exercise.status}}</p>
+    <div class="date">
+        <em>{{exercise.date_added}}</em>
+    </div>
+
+</div>
+
+<a href="{% url 'ToDoList:edit' exercise.id %}" class="btn btn-primary">Редактировать</a>
+
+{% endif %}
 
 
 <hr>
